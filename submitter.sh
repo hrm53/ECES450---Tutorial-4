@@ -18,5 +18,5 @@
 #this deletes old output to run again
 /bin/rm -rf out_tmp*  core-metrics-results
 
-containerdir=/qiime2_tutorial
+containerdir=/ECES450-Tutorial4-QIIME
 SINGULARITYENV_containerdir=${containerdir} singularity exec --fakeroot --bind .:/${containerdir},${TMP}:/tmp,${TMP}:${TMP} /ifs/groups/eces450650Grp/containers/qiime bash ${containerdir}/tutorial4_qiime_commands.sh
