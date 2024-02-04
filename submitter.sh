@@ -13,10 +13,13 @@
 ### memory size required per node (this is important, you also need to estimate a upper bound)
 #SBATCH --mem=4GB
 ### select the partition "def" (this is the default partition but you can change according to your application)
-#SBATCH --partition=edu
+#SBATCH --partition=def
 
 #this deletes old output to run again
 /bin/rm -rf out_tmp*  core-metrics-results
 
-containerdir=/ECES450-Tutorial4-QIIME
-SINGULARITYENV_containerdir=${containerdir} singularity exec --fakeroot --bind .:/${containerdir},${TMP}:/tmp,${TMP}:${TMP} /ifs/groups/eces450650Grp/containers/qiime bash ${containerdir}/tutorial4_qiime_commands.sh
+containerdir=home/hrm53/ECES450-Tutorial4-QIIME
+APPTAINERENV_containerdir=${containerdir} singularity exec --fakeroot --bind .:/${containerdir},${TMP}:/tmp,${TMP}:${TMP} /ifs/groups/eces450650Grp/containers/qiime bash  ${containerdir}/tutorial4_qiime_commands.sh
+
+mkdir LOGS_${SLURM_JOB_ID}
+cp $TMP/qiime2*.log LOGS_${SLURM_JOB_ID}
