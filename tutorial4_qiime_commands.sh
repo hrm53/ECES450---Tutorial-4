@@ -14,7 +14,7 @@ qiime tools peek ${indir}/emp-single-end-sequences.qza
 qiime demux emp-single \
   --i-seqs ${indir}/emp-single-end-sequences.qza \
   --m-barcodes-file ${indir}/sample-metadata.tsv \
-  --m-barcodes-column ${indir}/barcode-sequence \
+  --m-barcodes-column barcode-sequence \
   --o-per-sample-sequences ${indir}/demux.qza \
   --o-error-correction-details ${indir}/demux-details.qza
 
@@ -65,8 +65,8 @@ qiime deblur visualize-stats \
 qiime tools view ${indir}/deblur-stats.qzv
 
 # q2cli:
-mv rep-seqs-deblur.qza rep-seqs.qza
-mv table-deblur.qza table.qza
+mv ${indir}/rep-seqs-deblur.qza ${indir}/rep-seqs.qza
+mv ${indir}/table-deblur.qza ${indir}/table.qza
 # Artifact API:
 table = table_deblur
 rep_seqs = rep_seqs_deblur
